@@ -1,10 +1,74 @@
-{% load crispy_forms_tags %}
-{% load static %}
+<!-- <nav class="navbar navbar-light bg-light">
+        <span class="navbar-text text-dark text-center" style="align-content: center;">
+            The awards of design, creativity and innovation on the internet
+        </span>
+      </nav> -->
+<!--Navbar-->
+<nav class="pl-5 pr-5 navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
 
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="{% url 'newsToday' %}">The Moringa Tribune</a>
-    </div>
+  <!-- Collapse button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+    aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Collapsible content -->
+  <div class="collapse navbar-collapse" id="basicExampleNav">
+
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto">
+        <li class="text-white nav-item">
+          <a class="nav-link">Home</a>
+        </li>
+        
+      </li>
+      <li class="nav-item">
+        <a class="nav-link font-weight-bold"> ADD POST </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link font-weight-bold">ADD BUSINESS</a>
+      </li> 
+      </ul>
+     
+    <!-- Links -->
+
+    <form class="d-flex">
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+
+        <div class="col-sm-6 col-lg-6 d-flex justify-content-end">
+            <ul>
+              <!-- <li class="nav-item">
+                <a class="nav-link font-weight-bold text-white " href="{%url 'new-business'%}">ADD BUSINESS</a>
+              </li> -->
+              </ul>
+            <ul>
+              <li class="dropdown list-unstyled text-white">
+                  <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-user"></i> My Account </a>
+                <ul class="dropdown-menu dropdown-default" role="menu">
+                  <li>
+                      <a class="dropdown-item">Profile</a>
+                    </li>
+                  <li>
+                    <a class="dropdown-item">Change Password</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item">Logout</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <li class="list-unstyled">
+                <a class='btn btn-sm btn-default font-weight-bold'>Login</a>
+                <a class='btn btn-sm btn-default font-weight-bold'>Register</a>
+            </li>
+
+      </div>
+
   </div>
+  <!-- Collapsible content -->
 </nav>
+<!--/Navbar-->
