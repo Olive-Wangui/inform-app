@@ -1,25 +1,93 @@
-{% laod bootstrap5 %}
-% load fontawesome_5 %}
+{% laod bootstrap5 %} % load fontawesome_5 %} {% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neighbourhood</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    {% block styles %}
-    {% bootstrap_css %}
-    {% endblock %}
-  
-</head>
-<body>
+    {% if title %}
+    <title>The Neighborhood - {{title}}</title>
+    {% else %}
+    <title>The Neighborhood</title>
+    {% endif %} {% block styles %}
+    <!-- Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    {% bootstrap_css %} {% endblock %}
+    {% fontawesome_5_static %} 
+  </head>
+  <body>
+    {% include "navbar.html" %}
 
-    % block scripts %}
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-     {% bootstrap_javascript %}
-    {% endblock %}
+    {% block content %}
     
-</body>
+    <div class="overlay">
+        {% include "navbar.html" %}
+        <div class="d-flex" id="wrapper">
+            {% include "sidebar.html" %}
+
+            {% block content %}
+            {% endblock %}
+        </div>
+    <div class="jumbotron jumbotron-fluid bg-info mb-1 pb-3 pt-4">
+        <div class="">
+          <h2 class="display-5 text-center font-weight-bold text-white text-uppercase">Welcome to the Neighborhood!</h2>
+          <p class="text-center font-weight-bold text-uppercase">SELECT YOUR NEIGHBORHOOD TO GET STARTED</p>
+        </div>
+      </div>
+    
+    {%endblock%}
+
+    {% block scripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <!-- JQuery -->
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <!-- Bootstrap tooltips -->
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+      <!-- Bootstrap core JavaScript -->
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+      <!-- MDB core JavaScript -->
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"></script>
+      <script type="text/javascript" src="{% static 'scripts.js' %}"></script>
+
+        <!-- Menu Toggle Script -->
+        <!-- Bootstrap core JavaScript -->
+        <script src="{% static '/jquery/jquery.min.js'%}"></script>
+        <script>
+          $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+          });
+        </script>
+
+    {% bootstrap_javascript %} {% endblock %}
+
+     <!-- Footer -->
+<footer class="page-footer font-small bg-dark mt-4 pt-4">
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2021 Copyright.
+      <p> Olive Wangui <pa>
+    </div>
+    <!-- Copyright -->
+  
+  </footer>
+  <!-- Footer -->
+   </div>
+  </body>
 </html>
