@@ -1,93 +1,94 @@
-{% laod bootstrap5 %} % load fontawesome_5 %} {% load static %}
+{% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     {% if title %}
     <title>The Neighborhood - {{title}}</title>
     {% else %}
     <title>The Neighborhood</title>
     {% endif %} {% block styles %}
+
     <!-- Font Awesome -->
     <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
       rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
     />
-    <!-- Google Fonts -->
+    <!-- Bootstrap core CSS -->
     <link
-      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
     />
-    <!-- MDB -->
     <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    {% bootstrap_css %} {% endblock %}
-    {% fontawesome_5_static %} 
+    <!-- Material Design Bootstrap -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css"
+      rel="stylesheet"
+    />
+
+    {% endblock %}
   </head>
+
   <body>
-    {% include "navbar.html" %}
-
-    {% block content %}
-    
-    <div class="overlay">
-        {% include "navbar.html" %}
-        <div class="d-flex" id="wrapper">
-            {% include "sidebar.html" %}
-
-            {% block content %}
-            {% endblock %}
-        </div>
+    {% include "navbar.html" %} {% block content %}
     <div class="jumbotron jumbotron-fluid bg-info mb-1 pb-3 pt-4">
-        <div class="">
-          <h2 class="display-5 text-center font-weight-bold text-white text-uppercase">Welcome to the Neighborhood!</h2>
-          <p class="text-center font-weight-bold text-uppercase">SELECT YOUR NEIGHBORHOOD TO GET STARTED</p>
-        </div>
+      <div class="">
+        <h2
+          class="
+            display-5
+            text-center
+            font-weight-bold
+            text-white text-uppercase
+          "
+        >
+        SELECT YOUR NEIGHBORHOOD TO GET STARTED!
+        </h2>
       </div>
-    
-    {%endblock%}
-
-    {% block scripts %}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-      <!-- JQuery -->
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-      <!-- Bootstrap tooltips -->
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-      <!-- Bootstrap core JavaScript -->
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-      <!-- MDB core JavaScript -->
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"></script>
-      <script type="text/javascript" src="{% static 'scripts.js' %}"></script>
-
-        <!-- Menu Toggle Script -->
-        <!-- Bootstrap core JavaScript -->
-        <script src="{% static '/jquery/jquery.min.js'%}"></script>
-        <script>
-          $("#menu-toggle").click(function(e) {
-            e.preventDefault();
-            $("#wrapper").toggleClass("toggled");
-          });
-        </script>
-
-    {% bootstrap_javascript %} {% endblock %}
-
-     <!-- Footer -->
-<footer class="page-footer font-small bg-dark mt-4 pt-4">
-
-    <!-- Copyright -->
-    <div class="footer-copyright text-center py-3">© 2021 Copyright.
-      <p> Olive Wangui <pa>
     </div>
-    <!-- Copyright -->
-  
-  </footer>
-  <!-- Footer -->
-   </div>
+
+    {%endblock%} {% block scripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- JQuery -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
+    ></script>
+    <!-- Bootstrap tooltips -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"
+    ></script>
+    <!-- Bootstrap core JavaScript -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"
+    ></script>
+    <!-- MDB core JavaScript -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"
+    ></script>
+    <script type="text/javascript" src="{% static 'script.js' %}"></script>
+
+    {% endblock %}
+
+    <!-- Footer -->
+    <footer class="page-footer font-small bg-dark mt-4 pt-4">
+      <!-- Copyright -->
+      <div class="footer-copyright text-center py-3">
+        © 2021 Copyright.
+        <a>Olive Wangui</a>
+      </div>
+      <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
   </body>
 </html>

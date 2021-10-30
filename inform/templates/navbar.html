@@ -18,7 +18,7 @@
     <!-- Links -->
     <ul class="navbar-nav mr-auto">
         <li class="text-white nav-item">
-          <a class="nav-link">Home</a>
+          <a class="nav-link" href="{% url 'index' %}">Home</a>
         </li>
         
       </li>
@@ -31,7 +31,7 @@
       </ul>
      
     <!-- Links -->
-
+    
     <form class="d-flex">
       <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success" type="submit">Search</button>
@@ -40,7 +40,7 @@
         <div class="col-sm-6 col-lg-6 d-flex justify-content-end">
             <ul>
               <!-- <li class="nav-item">
-                <a class="nav-link font-weight-bold text-white " href="{%url 'new-business'%}">ADD BUSINESS</a>
+                <a class="nav-link font-weight-bold text-white " href="">ADD BUSINESS</a>
               </li> -->
               </ul>
             <ul>
@@ -50,8 +50,8 @@
                   <i class="fas fa-user"></i> My Account </a>
                 <ul class="dropdown-menu dropdown-default" role="menu">
                   <li>
-                      <a class="dropdown-item">Profile</a>
-                    </li>
+                    <a class="dropdown-item">Profile</a>
+                  </li>
                   <li>
                     <a class="dropdown-item">Change Password</a>
                   </li>
@@ -63,7 +63,7 @@
             </ul>
             <li class="list-unstyled">
                 <a class='btn btn-sm btn-default font-weight-bold'>Login</a>
-                <a class='btn btn-sm btn-default font-weight-bold'>Register</a>
+                <a class='btn btn-sm btn-default font-weight-bold'>SignUp</a>
             </li>
 
       </div>
@@ -72,3 +72,4 @@
   <!-- Collapsible content -->
 </nav>
 <!--/Navbar-->
+
