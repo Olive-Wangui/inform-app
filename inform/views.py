@@ -23,3 +23,22 @@ def index(request):
         message = "No Neighbourhood Found!"
 
     return render(request, 'index.html', {"date": date, "all_neighborhoods":all_neighborhoods,})
+
+def profile(request):
+    return render(request, 'profile.html')
+
+def edit_profile(request, username):
+    user = User.objects.get(username=username)
+    if request.method == 'POST':
+        user_form = UpdateUserForm(request.POST, instance=request.user)
+        prof_form = UpdateProfileForm(request.POST, request.FILES, instance=request.user.profile)
+        if user_form.is_valid() and prof_form.is_valid():
+            user_form.save()
+            prof_form.save()
+            return redirect('profile', user.username)
+    else:
+        user_form = UpdateUserForm(instance=request.user)
+        prof_form = UpdateProfileForm(instance=request.user.profile)
+    
+    return render(request, 'editprofile.html', {'user_form': user_form, 'prof_form': prof_form})
+    
