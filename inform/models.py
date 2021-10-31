@@ -2,6 +2,10 @@ from django.db import models
 from django.contrib.auth.models import User
 import datetime as dt
 from django.http import Http404
+from django.db.models.signals import post_save
+from django.dispatch import  receiver
+from PIL import Image
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 class Neighbourhood(models.Model):
@@ -35,7 +39,7 @@ class Neighbourhood(models.Model):
     
     
     @classmethod
-    def get_neighborhood(request, neighborhood):
+    def get_neighbourhood(request, neighborhood):
         try:
             project = Neighbourhood.objects.get(pk = id)
             
@@ -49,20 +53,20 @@ class Neighbourhood(models.Model):
     
     class Meta:
         ordering = ['-pub_date']
-        verbose_name = 'My Neighborhood'
-        verbose_name_plural = 'Neighborhoods'
+        verbose_name = 'My Neighbourhood'
+        verbose_name_plural = 'Neighbourhoods'
         
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     name = models.CharField(max_length=50, blank=True, null=True)
     location = models.CharField(max_length=50, blank=True, null=True)
-    picture = models.ImageField(upload_to = 'profile_pics/', blank=True, default='profile_pics/default.jpg')
+    picture =  CloudinaryField('image')
     neighbourhood = models.ForeignKey('Neighbourhood', on_delete=models.CASCADE, blank=True, default='1')
     
     
     def __str__(self):
         return f'{self.user.username} profile'
-
+    
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
         if created:
@@ -71,3 +75,51 @@ class Profile(models.Model):
     @receiver(post_save, sender=User)
     def save_user_profile(sender, instance, **kwargs):
         instance.profile.save()
+        
+class Business(models.Model):
+    name = models.CharField(max_length=50, blank=True, null=True)
+    email = models.EmailField()
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='owner')
+    Admin = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
+    admin_profile = models.ForeignKey(Profile,on_delete=models.CASCADE, blank=True, default='1')
+    address = models.TextField()
+    neighborhood = models.ForeignKey(Neighbourhood,on_delete=models.CASCADE, blank=True, default='1')
+     
+     
+    def save_business(self):
+        self.save()
+    
+    def delete_business(self):
+        self.delete()
+        
+    @classmethod
+    def get_allbusiness(cls):
+        business = cls.objects.all()
+        return business
+    
+    @classmethod
+    def search_business(cls, search_term):
+        business = cls.objects.filter(name__icontains=search_term)
+        return business
+    
+    @classmethod
+    def get_by_neighbourhood(cls, neighbourhoods):
+        business = cls.objects.filter(neighbourhood__name__icontains=neighbourhoods)
+        return business
+    
+    @classmethod
+    def get_businesses(request, id):
+        try:
+            business = Business.objects.get(pk = id)
+            
+        except ObjectDoesNotExist:
+            raise Http404()
+        
+        return business
+    
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        verbose_name = 'My Business'
+        verbose_name_plural = 'Business'
