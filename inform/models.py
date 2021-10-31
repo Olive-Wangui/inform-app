@@ -123,3 +123,11 @@ class Business(models.Model):
     class Meta:
         verbose_name = 'My Business'
         verbose_name_plural = 'Business'
+
+class Post(models.Model):
+    post = models.TextField()
+    pub_date = models.DateTimeField(auto_now_add=True)
+    neighbourhood = models.ForeignKey(Neighbourhood,on_delete=models.CASCADE)
+    Author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author_profile = models.ForeignKey(Profile,on_delete=models.CASCADE)
+    
