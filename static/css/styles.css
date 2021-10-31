@@ -1,80 +1,12 @@
+h2 {
+    background-color: rgb(255, 228, 196);
+    color: black;
+}
+
 body {
-    background-image: url('../../static/images/logo.jpg');
-    background-size: cover;
+    background-image: url(../images/logo.jpg);
     background-repeat: no-repeat;
-    background-attachment: fixed;
-  }
-  .card {
-    color: #000;
-  }
-  nav {
-    background-color: #1c2541;
-    color: #ffffff;
-  }
-  #hint_id_username,
-  #hint_id_password1,
-  #hint_id_password2 {
-    display: none;
-  }
-  
-  form label {
-    color: #1c2541;
-  }
-  
-  #id_bio {
-    height: 42px;
-  }
-  
-  .overlay {
-    background-color: rgba(28, 37, 65, 0.6);
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-  
-  #wrapper {
-    overflow-x: hidden;
-  }
-  
-  #sidebar-wrapper {
-    min-height: 100vh;
-    margin-left: -15rem;
-    -webkit-transition: margin 0.25s ease-out;
-    -moz-transition: margin 0.25s ease-out;
-    -o-transition: margin 0.25s ease-out;
-    transition: margin 0.25s ease-out;
-  }
-  
-  #sidebar-wrapper .sidebar-heading {
-    padding: 0.875rem 1.25rem;
-    font-size: 1.2rem;
-    color: #000;
-  }
-  
-  #sidebar-wrapper .list-group {
-    width: 15rem;
-  }
-  
-  #page-content-wrapper {
-    min-width: 100vw;
-  }
-  
-  #wrapper.toggled #sidebar-wrapper {
-    margin-left: 0;
-  }
-  
-  @media (min-width: 768px) {
-    #sidebar-wrapper {
-      margin-left: 0;
-    }
-  
-    #page-content-wrapper {
-      min-width: 0;
-      width: 100%;
-    }
-  
-    #wrapper.toggled #sidebar-wrapper {
-      margin-left: -15rem;
-    }
-  }
+    background-position: relative;
+    background-repeat: cover;
+    height: 200vh;
+}

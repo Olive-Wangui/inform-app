@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
-
+{% load bootstrap5 %}
+{% load static %}
 
 {% block content %}
 {{block.super}}
@@ -7,7 +8,7 @@
   <div class="row align-items-center">
     <div class="col-lg-9 pr-1 pl-1">
         <div class="container pt-2 mt-2">
-            <p class="font-weight-bold">Choose your Neighborhood:</p>
+            <p class="font-weight-bold" style="color: red; font-size: 30px;">Choose your Neighborhood:</p>
             
           <form class="" action="{% url 'index' %}">
 
@@ -25,7 +26,7 @@
               <!-- Grid column -->
               <div class="col">
                 <!-- Default input -->
-                <button type = "submit" class="btn btn-outline-dark btn-md">FIND BUSINESSES</button>
+                <button type = "submit" class="btn btn-danger">FIND BUSINESSES</button>
               </div>
               <!-- Grid column -->
             </div>
@@ -54,13 +55,6 @@
                       <!-- Heading -->
                       <h3 class="display-4 font-weight-bold white-text pt-5">Welcome to The Neighborhood!</h3>
 
-                      <!-- Divider -->
-                      <hr class="hr-light">
-                      <!-- <p class="font-weight-bold white-text">The awards of design, creativity and innovation on the internet</p> -->
-                      <a href=""><button type="button" class="btn btn-outline-white">Login<i class="fa fa-book ml-2"></i></button>
-                      </a>
-                      <a href=""><button type="button" class="btn btn-outline-white">Sign Up<i class="fa fa-book ml-2"></i></button>
-                      </a>
                   </div>
 
               </div>
