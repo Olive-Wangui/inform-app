@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 import datetime as dt
 from .models import *
+from .forms import * 
 
 # Create your views here.
 def index(request):

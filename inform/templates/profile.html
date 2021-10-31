@@ -8,7 +8,7 @@
         <div class="col-md-6 mt-4">
         <div class="card mt-auto mb-auto" >
     <h5 class="text-center card-title mt-2"><strong>{{user.username|title}}'s details</strong></h5>
-  {%if user.profile.profile_picture%}
+  {%if user.profile.picture%}
           <img class="rounded-circle  d-block mx-auto" height='250px' width='250px' src="{{ user.profile.picture.url }}">
          {%else%}
          <img class="rounded-circle" src="{% static 'images/default.png' %}" height='250px' width='250px'  alt="">
