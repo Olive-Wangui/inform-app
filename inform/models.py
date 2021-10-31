@@ -83,7 +83,7 @@ class Business(models.Model):
     Admin = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
     admin_profile = models.ForeignKey(Profile,on_delete=models.CASCADE, blank=True, default='1')
     address = models.TextField()
-    neighborhood = models.ForeignKey(Neighbourhood,on_delete=models.CASCADE, blank=True, default='1')
+    neighbourhood = models.ForeignKey(Neighbourhood,on_delete=models.CASCADE, blank=True, default='1')
      
      
     def save_business(self):
