@@ -2,11 +2,3 @@ h2 {
     background-color: rgb(255, 228, 196);
     color: black;
 }
-
-body {
-    background-image: url(../images/logo.jpg);
-    background-repeat: no-repeat;
-    background-position: relative;
-    background-repeat: cover;
-    height: 200vh;
-}
