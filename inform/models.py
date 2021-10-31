@@ -51,3 +51,23 @@ class Neighbourhood(models.Model):
         ordering = ['-pub_date']
         verbose_name = 'My Neighborhood'
         verbose_name_plural = 'Neighborhoods'
+        
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    name = models.CharField(max_length=50, blank=True, null=True)
+    location = models.CharField(max_length=50, blank=True, null=True)
+    picture = models.ImageField(upload_to = 'profile_pics/', blank=True, default='profile_pics/default.jpg')
+    neighbourhood = models.ForeignKey('Neighbourhood', on_delete=models.CASCADE, blank=True, default='1')
+    
+    
+    def __str__(self):
+        return f'{self.user.username} profile'
+
+    @receiver(post_save, sender=User)
+    def create_user_profile(sender, instance, created, **kwargs):
+        if created:
+            Profile.objects.create(user=instance)
+
+    @receiver(post_save, sender=User)
+    def save_user_profile(sender, instance, **kwargs):
+        instance.profile.save()
