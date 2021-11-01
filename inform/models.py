@@ -5,6 +5,7 @@ from django.http import Http404
 from django.db.models.signals import post_save
 from django.dispatch import  receiver
 from django.core.exceptions import ObjectDoesNotExist
+from tinymce.models import HTMLField
 
 # Create your models here.
 class Neighbourhood(models.Model):

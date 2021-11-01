@@ -1,0 +1,50 @@
+{% extends "django_registration/base.html" %}
+{% load bootstrap5 %}
+{% load static %}
+{% block content %}
+<div class="container">
+  <div class="row p-0 m-0">
+    <div class="col-md-6 mt-5">
+      {% if form.errors %}
+      <p> Password or Username is incorrect </p>
+      {% endif %}
+      <img class="thumbnail" src="{% static 'images/logo.jpg' %}" style="height:300px;width:350px;">
+    </div>
+    <div class="col-md-6  mt-5">
+      {% if form.errors %}
+      <p> Some Information Might be Incorrect </p>
+      {% endif %}
+      <div class="card border-primary mb-4" style="max-width:30rem;">
+        <div class="card-body text-primary">
+          <form action="/accounts/login/" method="post" style="font-family: 'apercu',sans-serif; font-size: 20px;">
+            {% csrf_token %}
+            {% bootstrap_form form%}
+            <div class="form-group">
+              <input type="submit" class="btn btn-primary btn-sm" value="Login">
+            </div>
+            <input type="hidden" name="next" value="{{next}}">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row p-0 m-0">
+    <div class="col-md-6">
+      <div class="card mt-5" style="width: 28rem;">
+        <div class="card-body text-center">
+          <h5 class="card-title" style="font-family: 'apercu',sans-serif">Don't have an account?</h5>
+          <a href="/accounts/register" class="btn btn-outline-dark" style="font-family: 'Dosis', sans-serif;">Sign Up</a>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>
+<div class="container-fluid mt-3">
+  <div class="col-md-12">
+    <div class="footer">
+    <h6 class="copyright" style="font-size: 12px;"> <strong>© 2021 Olive Wangui</strong> </h6>
+  </div>
+</div>
+
+{% endblock %}

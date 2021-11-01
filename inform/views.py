@@ -4,6 +4,8 @@ from .models import *
 from .forms import * 
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect, Http404
+from django.contrib.auth import logout as django_logout
 
 # Create your views here.
 def index(request):
@@ -87,6 +89,12 @@ def new_business(request):
     else:
         form = NewBusinessForm()
     return render(request, 'new-business.html', {"form": form})
+
+@login_required
+def logout(request):
+    django_logout(request)
+    return  HttpResponseRedirect('/')
+
     
 login_required(login_url='/accounts/login/')
 def new_post(request):
@@ -100,7 +108,7 @@ def new_post(request):
             post = form.save(commit=False)
             post.Author = current_user
             post.author_profile = profile
-            post.neighborhood = neighbourhood
+            post.neighbourhood = neighbourhood
             post.save()
         return redirect('index')
 
