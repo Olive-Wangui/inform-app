@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth.models import User
 from .models import *
+from django.contrib.auth.forms import UserCreationForm
+from crispy_forms.helper import FormHelper
  
  
 class UpdateUserForm(forms.ModelForm):
@@ -33,7 +35,7 @@ class NewNeighbourhoodForm(forms.ModelForm):
 class NewPostForm(forms.ModelForm):
     class Meta:
         model = Post
-        exclude = ['Author', 'pub_date', 'author_profile', 'neighborhood']
+        exclude = ['Author', 'pub_date', 'author_profile', 'neighbourhood']
         widgets = {
           'post': forms.Textarea(attrs={'rows':2, 'cols':10,}),
         }

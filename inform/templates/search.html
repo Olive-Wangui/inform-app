@@ -1,6 +1,4 @@
-{% extends 'layout.html'%} 
-{% load bootstrap5 %}
-{% load fontawesome_5 %}
+{% extends 'base.html'%} 
 
 {% block content %}
 <div style="height: 100%;">
@@ -34,7 +32,7 @@
                       </th>
                       <th class="th-sm">Business Email
                       </th>
-                      <th class="th-sm">Neighborhood
+                      <th class="th-sm">Neighbourhood
                       </th>
                       
                     </tr>
@@ -45,7 +43,7 @@
                       <td>{{biz.name}}</td>
                       <td>{{biz.address}}</td>
                       <td>{{biz.email}}</td>
-                      <td>{{biz.neighborhood.name}}</td>
+                      <td>{{biz.neighbourhood.name}}</td>
                       
                     </tr>
               {% endfor %}

@@ -1,16 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import User
-import datetime as dt
 from django.http import Http404
 from django.db.models.signals import post_save
 from django.dispatch import  receiver
 from django.core.exceptions import ObjectDoesNotExist
-from tinymce.models import HTMLField
 
 # Create your models here.
 class Neighbourhood(models.Model):
-    name = models.CharField(max_length=100, blank=True, null=True)
-    location = models.CharField(max_length=50, blank=True, null=True)
+    name = models.CharField(max_length=200)
+    location = models.CharField(max_length=250)
     occupants_count = models.IntegerField()
     pub_date = models.DateTimeField(auto_now_add=True)
     Admin = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
@@ -23,13 +21,13 @@ class Neighbourhood(models.Model):
         
     @classmethod
     def get_neighbourhoods(cls):
-        businesses = cls.objects.all()
-        return businesses
+        projects = cls.objects.all()
+        return projects
     
     @classmethod
     def search_neighbourhoods(cls, search_term):
-        businesses = cls.objects.filter(name__icontains=search_term)
-        return businesses
+        projects = cls.objects.filter(name__icontains=search_term)
+        return projects
     
     
     @classmethod
@@ -80,9 +78,9 @@ class Profile(models.Model):
         instance.profile.save()
         
 class Business(models.Model):
-    name = models.CharField(max_length=50, blank=True, null=True)
+    name = models.CharField(max_length=250)
     email = models.EmailField()
-    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='owner')
+    pub_date = models.DateTimeField(auto_now_add=True)
     Admin = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
     admin_profile = models.ForeignKey(Profile,on_delete=models.CASCADE, blank=True, default='1')
     address = models.TextField()
@@ -156,4 +154,4 @@ class Post(models.Model):
     class Meta:
         ordering = ['-pub_date']
         verbose_name = 'My Post'
-        verbose_name_plural = 'Post'
+        verbose_name_plural = 'Posts'

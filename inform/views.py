@@ -1,17 +1,17 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponseRedirect
 import datetime as dt
 from .models import *
 from .forms import * 
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, Http404
+from django.http import Http404
 from django.contrib.auth import logout as django_logout
 
 # Create your views here.
 def index(request):
     date = dt.date.today()
     # business = Business.get_allbusiness()
-    all_neighborhoods = Neighbourhood.get_neighbourhoods()
+    all_neighbourhoods = Neighbourhood.get_neighbourhoods()
     
     
     if 'neighbourhood' in request.GET and request.GET["neighbourhood"]:
@@ -19,7 +19,7 @@ def index(request):
         searched_neighbourhood = Business.get_by_neighbourhood(neighbourhoods)
         all_posts = Post.get_by_neighbourhood(neighbourhoods)
         message = f"{neighbourhoods}"
-        all_neighbourhoods = Neighbourhood.get_neighborhoods()        
+        all_neighbourhoods = Neighbourhood.get_neighbourhoods()        
         
         return render(request, 'index.html', {"message":message,"location": searched_neighbourhood,
                                                "all_neighbourhoods":all_neighbourhoods, "all_posts":all_posts})
@@ -27,7 +27,7 @@ def index(request):
     else:
         message = "No Neighbourhood Found!"
 
-    return render(request, 'index.html', {"date": date, "all_neighborhoods":all_neighborhoods,})
+    return render(request, 'index.html', {"date": date, "all_neighbourhoods":all_neighbourhoods,})
 
 login_required(login_url='/accounts/login/')
 def profile(request, username):
@@ -49,13 +49,13 @@ def edit_profile(request, username):
     return render(request, 'editprofile.html', {'user_form': user_form, 'prof_form': prof_form})
     
 login_required(login_url='/accounts/login/')
-def search_results(request):
+def search_businesses(request):
     if 'keyword' in request.GET and request.GET['keyword']:
         search_term = request.GET.get('keyword')
-        searched_businesses = Business.search_results(search_term)
+        searched_projects = Business.search_business(search_term)
         message = f"(search_term)"
         
-        return render(request, 'search.html', {"message": message, "businesses": searched_businesses})
+        return render(request, 'search.html', {"message": message, "businesses": searched_projects})
     else:
         message = "No business searched"
         return render(request, 'search.html', {"message": message})
@@ -64,13 +64,13 @@ def search_results(request):
 def get_business(request, id):
 
     try:
-        business = Business.objects.get(pk = id)
+        project = Business.objects.get(pk = id)
         
     except ObjectDoesNotExist:
         raise Http404()
     
     
-    return render(request, "new-business.html", {"business":business})
+    return render(request, "projects.html", {"project": project})
     
 login_required(login_url='/accounts/login/')
 def new_business(request):
@@ -80,10 +80,10 @@ def new_business(request):
     if request.method == 'POST':
         form = NewBusinessForm(request.POST, request.FILES)
         if form.is_valid():
-            business = form.save(commit=False)
-            business.Admin = current_user
-            business.admin_profile = profile
-            business.save()
+            project = form.save(commit=False)
+            project.Admin = current_user
+            project.admin_profile = profile
+            project.save()
         return redirect('index')
 
     else:
