@@ -3,7 +3,7 @@ import datetime as dt
 from .models import *
 from .forms import * 
 from django.core.exceptions import ObjectDoesNotExist
-from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index(request):
@@ -27,6 +27,7 @@ def index(request):
 
     return render(request, 'index.html', {"date": date, "all_neighborhoods":all_neighborhoods,})
 
+login_required(login_url='/accounts/login/')
 def profile(request, username):
     return render(request, 'profile.html')
 
@@ -45,6 +46,7 @@ def edit_profile(request, username):
     
     return render(request, 'editprofile.html', {'user_form': user_form, 'prof_form': prof_form})
     
+login_required(login_url='/accounts/login/')
 def search_results(request):
     if 'keyword' in request.GET and request.GET['keyword']:
         search_term = request.GET.get('keyword')
@@ -68,6 +70,7 @@ def get_business(request, id):
     
     return render(request, "new-business.html", {"business":business})
     
+login_required(login_url='/accounts/login/')
 def new_business(request):
     current_user = request.user
     profile = request.user.profile
@@ -85,6 +88,7 @@ def new_business(request):
         form = NewBusinessForm()
     return render(request, 'new-business.html', {"form": form})
     
+login_required(login_url='/accounts/login/')
 def new_post(request):
     current_user = request.user
     profile = request.user.profile
