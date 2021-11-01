@@ -66,7 +66,7 @@ def get_business(request, id):
         raise Http404()
     
     
-    return render(request, "new-business.html", {"project":business})
+    return render(request, "new-business.html", {"business":business})
     
 def new_business(request):
     current_user = request.user

@@ -22,13 +22,13 @@ class Neighbourhood(models.Model):
         
     @classmethod
     def get_neighbourhoods(cls):
-        projects = cls.objects.all()
-        return projects
+        businesses = cls.objects.all()
+        return businesses
     
     @classmethod
     def search_neighbourhoods(cls, search_term):
-        projects = cls.objects.filter(name__icontains=search_term)
-        return projects
+        businesses = cls.objects.filter(name__icontains=search_term)
+        return businesses
     
     
     @classmethod
