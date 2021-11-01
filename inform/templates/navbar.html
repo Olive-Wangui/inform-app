@@ -22,9 +22,11 @@
         </li>
         
       </li>
+      {% if user.is_authenticated %}
       <li class="nav-item">
         <a class="nav-link font-weight-bold" href="{% url 'new_post' %}"> ADD POST </a>
       </li>
+      {% endif %}
       <li class="nav-item">
         <a class="nav-link font-weight-bold" href="{% url 'new_business' %}">ADD BUSINESS</a>
       </li> 
@@ -32,12 +34,15 @@
      
     <!-- Links -->
     
+    {% if users.is_authenticated %}
     <form class="d-flex">
       <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success" type="submit" href="{% url 'search_results' %}">Search</button>
     </form>
+    {% endif %}
 
         <div class="col-sm-6 col-lg-6 d-flex justify-content-end">
+          {% if user.is_authenticated %}
             <ul>
               <!-- <li class="nav-item">
                 <a class="nav-link font-weight-bold text-white " href="">ADD BUSINESS</a>
@@ -53,18 +58,20 @@
                     <a class="dropdown-item" href="{% url 'profile' user.username %}">Profile</a>
                   </li>
                   <li>
-                    <a class="dropdown-item">Change Password</a>
+                    <a class="dropdown-item" href="/accounts/password/change">Change Password</a>
                   </li>
                   <li>
-                    <a class="dropdown-item">Logout</a>
+                    <a class="dropdown-item" href="/logout">Logout</a>
                   </li>
                 </ul>
               </li>
             </ul>
+            {% else %}
             <li class="list-unstyled">
-                <a class='btn btn-sm btn-default font-weight-bold'>Login</a>
-                <a class='btn btn-sm btn-default font-weight-bold'>SignUp</a>
+                <a class='btn btn-sm btn-default font-weight-bold'  href="/accounts/login">Login</a>
+                <a class='btn btn-sm btn-default font-weight-bold'  href="/accounts/signin">SignUp</a>
             </li>
+            {% endif %}
 
       </div>
 
