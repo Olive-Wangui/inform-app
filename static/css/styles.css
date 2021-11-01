@@ -2,3 +2,15 @@ h2 {
     background-color: rgb(255, 228, 196);
     color: black;
 }
+
+@media (min-width: 768px) { }
+
+
+form label {
+    color: #1c2541;
+  }
+  
+
+.card-body {
+    color: black;
+}

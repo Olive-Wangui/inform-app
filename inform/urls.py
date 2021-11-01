@@ -7,6 +7,10 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('profile/<username>/', views.profile, name='profile'),
     path('profile/<username>/edit', views.edit_profile, name='edit'),
+    path('search/', views.search_results, name='search_results'),
+    path('business/(\d+)', views.get_business, name='business_results'),
+    path('new/business', views.new_business, name='new_business'),
+    path('new/post', views.new_post, name='new_post'),
 ]
 
 if settings.DEBUG:

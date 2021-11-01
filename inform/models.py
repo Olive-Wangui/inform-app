@@ -4,7 +4,7 @@ import datetime as dt
 from django.http import Http404
 from django.db.models.signals import post_save
 from django.dispatch import  receiver
-from PIL import Image
+from django.core.exceptions import ObjectDoesNotExist
 
 # Create your models here.
 class Neighbourhood(models.Model):

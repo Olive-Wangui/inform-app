@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 import datetime as dt
 from .models import *
 from .forms import * 
+from django.core.exceptions import ObjectDoesNotExist
+from django.contrib import messages
 
 # Create your views here.
 def index(request):
@@ -53,6 +55,18 @@ def search_results(request):
     else:
         message = "No business searched"
         return render(request, 'search.html', {"message": message})
+    
+
+def get_business(request, id):
+
+    try:
+        business = Business.objects.get(pk = id)
+        
+    except ObjectDoesNotExist:
+        raise Http404()
+    
+    
+    return render(request, "new-business.html", {"project":business})
     
 def new_business(request):
     current_user = request.user
