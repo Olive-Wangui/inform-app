@@ -54,3 +54,38 @@ def search_results(request):
         message = "No business searched"
         return render(request, 'search.html', {"message": message})
     
+def new_business(request):
+    current_user = request.user
+    profile = request.user.profile
+    
+    if request.method == 'POST':
+        form = NewBusinessForm(request.POST, request.FILES)
+        if form.is_valid():
+            business = form.save(commit=False)
+            business.Admin = current_user
+            business.admin_profile = profile
+            business.save()
+        return redirect('index')
+
+    else:
+        form = NewBusinessForm()
+    return render(request, 'new-business.html', {"form": form})
+    
+def new_post(request):
+    current_user = request.user
+    profile = request.user.profile
+    neighbourhood = request.user.profile.neighbourhood
+
+    if request.method == 'POST':
+        form = NewPostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.Author = current_user
+            post.author_profile = profile
+            post.neighborhood = neighbourhood
+            post.save()
+        return redirect('index')
+
+    else:
+        form = NewPostForm()
+    return render(request, 'new-post.html', {"form": form})
