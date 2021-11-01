@@ -25,7 +25,7 @@ def index(request):
 
     return render(request, 'index.html', {"date": date, "all_neighborhoods":all_neighborhoods,})
 
-def profile(request):
+def profile(request, username):
     return render(request, 'profile.html')
 
 def edit_profile(request, username):

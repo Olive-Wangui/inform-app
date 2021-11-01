@@ -5,7 +5,6 @@ from django.http import Http404
 from django.db.models.signals import post_save
 from django.dispatch import  receiver
 from PIL import Image
-from cloudinary.models import CloudinaryField
 
 # Create your models here.
 class Neighbourhood(models.Model):
@@ -60,21 +59,24 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     name = models.CharField(max_length=50, blank=True, null=True)
     location = models.CharField(max_length=50, blank=True, null=True)
-    picture =  CloudinaryField('image')
+    picture = models.ImageField(upload_to='profile_pics/', blank=True, default='profile_pics/default.jpg')
     neighbourhood = models.ForeignKey('Neighbourhood', on_delete=models.CASCADE, blank=True, default='1')
     
     
     def __str__(self):
         return f'{self.user.username} profile'
     
+    def delete(self):
+        self.delete()
+    
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
         if created:
             Profile.objects.create(user=instance)
 
-    #@receiver(post_save, sender=User)
-    #def save_user_profile(sender, instance, **kwargs):
-        #instance.profile.save()
+    @receiver(post_save, sender=User)
+    def save_user_profile(sender, instance, **kwargs):
+        instance.profile.save()
         
 class Business(models.Model):
     name = models.CharField(max_length=50, blank=True, null=True)

@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'bootstrap5',
     'fontawesome_5',
     'crispy_forms',
-    'cloudinary'
 ]
 
 MIDDLEWARE = [
@@ -133,13 +132,6 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
-
-# adding config
-cloudinary.config( 
-  cloud_name = "YOUR_CLOUD_NAME", 
-  api_key = "YOUR_API_KEY", 
-  api_secret = "YOUR_API_SECRET" 
-)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
