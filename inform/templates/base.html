@@ -1,4 +1,4 @@
-{% load static %}
+{% load static %} {% load bootstrap5 %}
 
 <!DOCTYPE html>
 <html>
@@ -33,7 +33,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
 
     {% endblock %}
   </head>
@@ -42,14 +42,8 @@
     {% include "navbar.html" %} {% block content %}
     <div class="jumbotron jumbotron-fluid">
       <div class="">
-        <h2
-          class="
-            display-3
-            text-center
-            font-weight-bold
-          "
-        >
-        SELECT YOUR NEIGHBOURHOOD TO GET STARTED!
+        <h2 class="display-3 text-center font-weight-bold">
+          SELECT YOUR NEIGHBOURHOOD TO GET STARTED!
         </h2>
       </div>
     </div>
