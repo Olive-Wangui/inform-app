@@ -43,3 +43,14 @@ def edit_profile(request, username):
     
     return render(request, 'editprofile.html', {'user_form': user_form, 'prof_form': prof_form})
     
+def search_results(request):
+    if 'keyword' in request.GET and request.GET['keyword']:
+        search_term = request.GET.get('keyword')
+        searched_businesses = Business.search_results(search_term)
+        message = f"(search_term)"
+        
+        return render(request, 'search.html', {"message": message, "businesses": searched_businesses})
+    else:
+        message = "No business searched"
+        return render(request, 'search.html', {"message": message})
+    
