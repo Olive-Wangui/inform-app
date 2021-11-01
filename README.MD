@@ -46,4 +46,4 @@ No known bugs
 `MIT` License this application's source code is free for any open source projects
 
 ## License
-© `levi` | MiT
+© `Olive Wangui` | MiT
