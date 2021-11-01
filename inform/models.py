@@ -59,8 +59,7 @@ class Profile(models.Model):
     name = models.CharField(max_length=50, blank=True, null=True)
     location = models.CharField(max_length=50, blank=True, null=True)
     picture = models.ImageField(upload_to='profile_pics/', blank=True, default='profile_pics/default.jpg')
-    neighbourhood = models.ForeignKey('Neighbourhood', on_delete=models.CASCADE, blank=True, default='1')
-    
+    neighbourhood = models.ForeignKey('Neighbourhood', on_delete=models.SET_NULL, null=True, related_name='occupant', blank=True)
     
     def __str__(self):
         return f'{self.user.username} profile'
