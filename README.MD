@@ -28,7 +28,7 @@ Has an administration dashboard that allows the admin to post new pics, edit the
 * Run `source virtual/bin/activate` on the terminal to activate the virtual environment. 
 * Install all the dependancies that come with the project from the requirements.txt by running `python3.9 -m pip install -r requirements.txt` on the terminal. 
 * You can then run `python3.6 manage.py runserver` on the terminal and access the application locally on default port `http://127.0.0.1:8000/`
-* You can access the application remotly on my heroku application at `levihoodwatch`
+* You can access the application remotly on my heroku application at `https://inform-app.herokuapp.com/`
 
 # Known Bugs
 No known bugs
